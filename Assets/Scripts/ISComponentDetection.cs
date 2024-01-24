@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
@@ -9,58 +11,83 @@ using UnityEngine.XR.Content.Interaction;
 
 public class ISComponentDetection : MonoBehaviour
 {
+
     [SerializeField] private Key gpuKey;
     [SerializeField] private Key ramKey;
     [SerializeField] private Key cpuKey;
     [SerializeField] private Key cpuFanKey;
-    private string currentComponent = "one";
+    private Component currentComponent = Component.NONE;
 
     [SerializeField] private TextMeshProUGUI confirmText;
 
+
     private void OnTriggerEnter(Collider other) {
-        if (!other.gameObject.GetComponent<Keychain>()) {
+        bool hasKey = other.gameObject.GetComponent<Keychain>();
+
+        if (!hasKey) {
             Debug.Log("No Keychain");
             return;
         }
-        if (!currentComponent.Equals("none")) // One Component is already displaying
+
+
+        if (currentComponent != Component.NONE) // One Component is already displaying
             return;
-        if (other.gameObject.GetComponent<Keychain>().Contains(cpuKey))
-            currentComponent = "cpu";
-        else if (other.gameObject.GetComponent<Keychain>().Contains(gpuKey))
-            currentComponent = "gpu";
-        else if (other.gameObject.GetComponent<Keychain>().Contains(cpuFanKey))
-            currentComponent = "cpuFan";
-        else if (other.gameObject.GetComponent<Keychain>().Contains(ramKey))
-            currentComponent = "ram";
+
+        bool isKey(Key key) => other.gameObject.GetComponent<Keychain>().Contains(key);
+
+        if (isKey(cpuKey))
+            currentComponent = Component.CPU;
+        else if (isKey(gpuKey))
+            currentComponent = Component.GPU;
+        else if (isKey(cpuFanKey))
+            currentComponent = Component.FAN;
+        else if (isKey(ramKey))
+            currentComponent = Component.RAM;
+
         UpdateSelectMenuText();
+        UpdateQuiz();
     }
+
+
+
     private void OnTriggerExit(Collider other) {
         if (!other.gameObject.GetComponent<Keychain>())
             return;
-        currentComponent = "none";
+
+        currentComponent = Component.NONE;
         UpdateSelectMenuText();
+
+        UpdateQuiz();
     }
 
+    private void UpdateQuiz() => GameObject.Find("Monitor").GetComponent<Monitor>().OnChangeComponent(currentComponent);
+
     private void UpdateSelectMenuText() {
-        if (currentComponent.Equals("none")) {
+        if (currentComponent == Component.NONE) {
             confirmText.text = "Drag a component\n into the beam";
             return;
         }
-        confirmText.text = "Learn more about\n the " + CurCompInText() + "!";
-    }
 
-    private string CurCompInText() {
-        switch (currentComponent) {
-            case "gpu":
-                return "GPU";
-            case "cpu":
-                return "CPU";
-            case "cpuFan":
-                return "CPU fan";
-            case "ram":
-                return "RAM";
-            default:
-                return "Error";
-        }
+        confirmText.text = "Learn more about\n the " + currentComponent.Name + "!";
     }
 }
+
+public class Component
+{
+    public string Name { get; set; }
+    public Quiz Quiz { get; set; }
+
+    public Component(string name, Quiz quiz) { 
+        Name = name; 
+        Quiz = quiz;
+    }
+
+    public static readonly Component GPU = new Component("GPU", Quiz.GPU);
+    public static readonly Component CPU = new Component("CPU", Quiz.CPU);
+    public static readonly Component RAM = new Component("RAM", Quiz.RAM);
+    public static readonly Component FAN = new Component("FAN", Quiz.FAN);
+    public static readonly Component NONE = new Component("NONE", Quiz.DEFAULT);
+
+    public static readonly List<Component> VALUES = new List<Component> { CPU, GPU, RAM, FAN };
+}
+
