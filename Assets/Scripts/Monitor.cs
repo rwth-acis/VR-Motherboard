@@ -4,16 +4,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Monitor : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI questionText;
 
+
     [SerializeField] private TextMeshProUGUI answer1;
     [SerializeField] private TextMeshProUGUI answer2;
     [SerializeField] private TextMeshProUGUI answer3;
 
+    [SerializeField] private Button button1;
+    [SerializeField] private Button button2;
+    [SerializeField] private Button button3;
 
     private Component currentComponent = Component.NONE;
 
@@ -24,7 +29,6 @@ public class Monitor : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
-
 
         void addListener(TextMeshProUGUI answer, int i)
         {
@@ -44,10 +48,23 @@ public class Monitor : MonoBehaviour
             answer.GetComponent<EventTrigger>().triggers.Add(entry);
         }
 
-        addListener(answer1, 1);
-        addListener(answer2, 2);
-        addListener(answer3, 3);
+        button1.onClick.RemoveAllListeners();
+        button2.onClick.RemoveAllListeners();
+        button3.onClick.RemoveAllListeners();
+
+        button1.onClick.AddListener(() => OnAnswerClick(1));
+        button2.onClick.AddListener(() => OnAnswerClick(2));
+        button3.onClick.AddListener(() => OnAnswerClick(3));
+
+        // addListener(answer3, 3);
     }
+
+    private void OnButtonClicked(SelectEnterEventArgs args)
+    {
+        Debug.Log(args.interactorObject.ToString());
+    }
+
+    public void OnAnswerClick1() => OnAnswerClick(1);
 
     private void OnAnswerClick(int i)
     {
