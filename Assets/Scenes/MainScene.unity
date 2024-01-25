@@ -915,7 +915,7 @@ Transform:
   m_GameObject: {fileID: 849400716}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.466, y: 0.922, z: 3.826}
+  m_LocalPosition: {x: 1.392, y: 0.922, z: 3.057}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1380,6 +1380,7 @@ MonoBehaviour:
   - Have fun!
   textspeed: 0
   myScript: {fileID: 887889224}
+  button: {fileID: 459811040}
 --- !u!1001 &1459590957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1836,11 +1837,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5167794986802246405, guid: 8febf91cd245adb40a78dcfac71ef738, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0127
+      value: -0.0497
       objectReference: {fileID: 0}
     - target: {fileID: 5167794986802246405, guid: 8febf91cd245adb40a78dcfac71ef738, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0142
+      value: 0.0184
       objectReference: {fileID: 0}
     - target: {fileID: 5167794986802246405, guid: 8febf91cd245adb40a78dcfac71ef738, type: 3}
       propertyPath: m_LocalRotation.w
