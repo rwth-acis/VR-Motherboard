@@ -39,15 +39,12 @@ namespace i5.VirtualAgents.Examples
         {
             if (startItemPickup)
             {
+                startItemPickup = false;
                 taskSystem.Tasks.GoTo(cpu.transform);
                 taskSystem.Tasks.GoToAndPickUp(cpu, default);
-
                 taskSystem.Tasks.GoToAndDropItem(dropItemHere);
-                startItemPickup = false;
                 StartCoroutine(rescaleCPU());
                 taskSystem.Tasks.GoTo(waypoints[1].transform);
-  
-
             }
         }
 
