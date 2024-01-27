@@ -1368,14 +1368,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1271966378}
   lines:
-  - Hello!  welcome to the VR-Motherboard game!
-  - you are going to learn how the components of a motherboard work
-  - 'after each tutorial you can do a quiz to text your knowledge '
+  - Hello!  Welcome to the VR-Motherboard game!
+  - You are going to learn how the components of a motherboard work.
+  - 'After each tutorial you can do a quiz to test your knowledge. '
   - Can you see the motherboard on the table? This is what you are going to look
     at today.
   - You can take each component out of the Motherboard. If you want to know more
     about this component, you can drop it into the beam.
-  - Then you can choose to look at the tutorial for the component.
+  - Then you can choose to look at the tutorial for the component. You will spawn
+    to a desk if you click on the button 'confirm'.
   - I am going to show you how to do it.
   - Have fun!
   textspeed: 0

@@ -19,6 +19,7 @@ namespace i5.VirtualAgents.Examples
 
         protected override void Start()
         {
+        
             base.Start();
             if (walk)
             {
@@ -44,8 +45,16 @@ namespace i5.VirtualAgents.Examples
                 taskSystem.Tasks.GoToAndDropItem(dropItemHere);
                 taskSystem.Tasks.GoTo(waypoints[1].transform);
                 startItemPickup = false;
+                StartCoroutine(rescaleCPU());
 
             }
+        }
+
+        private IEnumerator rescaleCPU()
+        {
+            yield return new WaitForSeconds(4);
+            Vector3 oldsize = cpu.transform.localScale;
+            cpu.transform.localScale = oldsize * 12;
         }
     }
 }
