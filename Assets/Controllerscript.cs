@@ -43,9 +43,10 @@ namespace i5.VirtualAgents.Examples
                 taskSystem.Tasks.GoToAndPickUp(cpu, default);
 
                 taskSystem.Tasks.GoToAndDropItem(dropItemHere);
-                taskSystem.Tasks.GoTo(waypoints[1].transform);
                 startItemPickup = false;
                 StartCoroutine(rescaleCPU());
+                taskSystem.Tasks.GoTo(waypoints[1].transform);
+  
 
             }
         }
@@ -54,7 +55,7 @@ namespace i5.VirtualAgents.Examples
         {
             yield return new WaitForSeconds(4);
             Vector3 oldsize = cpu.transform.localScale;
-            cpu.transform.localScale = oldsize * 12;
+            cpu.transform.localScale = oldsize * 14;
         }
     }
 }
