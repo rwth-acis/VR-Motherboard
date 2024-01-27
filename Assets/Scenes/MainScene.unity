@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276807, g: 0.21589197, b: 0.29782572, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -520,6 +520,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3916162577811160710, guid: 0f4af5a2a4dd978408a2370321387c4b, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3916162577811160710, guid: 0f4af5a2a4dd978408a2370321387c4b, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4077605146094674690, guid: 0f4af5a2a4dd978408a2370321387c4b, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -572,7 +580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ServerRoom 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3916162577811160710, guid: 0f4af5a2a4dd978408a2370321387c4b, type: 3}
+    - {fileID: 314017258672459886, guid: 0f4af5a2a4dd978408a2370321387c4b, type: 3}
+    - {fileID: 5809749667801612083, guid: 0f4af5a2a4dd978408a2370321387c4b, type: 3}
     m_RemovedGameObjects:
     - {fileID: 46222849482491050, guid: 0f4af5a2a4dd978408a2370321387c4b, type: 3}
     m_AddedGameObjects:
