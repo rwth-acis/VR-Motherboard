@@ -13,6 +13,7 @@ public class dialogue : MonoBehaviour
     public i5.VirtualAgents.Examples.ControllerScript myScript;
     public Button button;
     // Start is called before the first frame update
+    [SerializeField] private bool repeat = false;
     void Start()
     {
         textComponent.text = string.Empty;
@@ -75,11 +76,18 @@ public class dialogue : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
-            myScript.startItemPickup = true;
-            // Debug.Log(myScript.startItemPickup) = true;
-            //script = gameObject.GetComponent<ItemDropControllerScript>;
-            //ItemDropControllerScript.startItemPickup = true;
+            if (repeat) {
+                index = 0;
+                textComponent.text = string.Empty;
+                StartCoroutine(Typeline());
+            }
+            else {
+                gameObject.SetActive(false);
+                myScript.startItemPickup = true;
+                // Debug.Log(myScript.startItemPickup) = true;
+                //script = gameObject.GetComponent<ItemDropControllerScript>;
+                //ItemDropControllerScript.startItemPickup = true;
+            }
         }
     }
 }

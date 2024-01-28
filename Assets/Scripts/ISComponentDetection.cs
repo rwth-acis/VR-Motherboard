@@ -17,9 +17,27 @@ public class ISComponentDetection : MonoBehaviour
     [SerializeField] private Key cpuKey;
     [SerializeField] private Key cpuFanKey;
     private Component currentComponent = Component.NONE;
-
+    [SerializeField] private GameObject player;
     [SerializeField] private TextMeshProUGUI confirmText;
 
+    [SerializeField] private Transform gpuTutorial;
+    [SerializeField] private Transform cpuTutorial;
+    [SerializeField] private Transform ramTutorial;
+
+    public void TPToComponentTutorial() {
+        if (currentComponent == Component.GPU) {
+            player.transform.position = gpuTutorial.position;
+        }
+        else if (currentComponent == Component.CPU) {
+            player.transform.position = cpuTutorial.position;
+        }
+        else if (currentComponent == Component.RAM) {
+            player.transform.position = ramTutorial.position;
+        }
+        else if (currentComponent == Component.FAN) {
+            player.transform.position = cpuTutorial.position;
+        }
+    }
 
     private void OnTriggerEnter(Collider other) {
         bool hasKey = other.gameObject.GetComponent<Keychain>();
