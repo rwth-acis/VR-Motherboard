@@ -48,7 +48,7 @@ namespace i5.VirtualAgents.Examples
             }
         }
 
-        private IEnumerator rescaleCPU()
+        private IEnumerator rescaleCPU() // Solves bug with virtual agent, cpu gets resized after pickup
         {
             yield return new WaitForSeconds(4);
             Vector3 oldsize = cpu.transform.localScale;

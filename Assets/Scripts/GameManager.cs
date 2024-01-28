@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
     private void Start() {
+        // Logic for reset 
         cpuPos = cpu.transform.position;
         ram1Pos = ram1.transform.position;
         ram2Pos = ram2.transform.position;

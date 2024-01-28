@@ -22,7 +22,7 @@ public class dialogue : MonoBehaviour
          btn.onClick.AddListener(TaskOnClick);
     }
 
-    void TaskOnClick()
+    void TaskOnClick() // display next line if exists, else deactivate component
      {
         if (textComponent.text == lines[index])
         {
@@ -34,23 +34,6 @@ public class dialogue : MonoBehaviour
             textComponent.text = lines[index];
         }
     }
-    // Update is called once per frame
-    /*public void Update()
-    {
-        button.onClick
-        if (Input.GetMouseButtonDown(0))
-        {
-            if(textComponent.text== lines[index])
-            {
-                nextline();
-            }
-            else
-            {
-                StopAllCoroutines();
-                textComponent.text = lines[index];
-            }
-        }
-    }*/
 
     void startDialogue()
     {
@@ -76,7 +59,7 @@ public class dialogue : MonoBehaviour
         }
         else
         {
-            if (repeat) {
+            if (repeat) { // repeat courses
                 index = 0;
                 textComponent.text = string.Empty;
                 StartCoroutine(Typeline());
@@ -84,9 +67,6 @@ public class dialogue : MonoBehaviour
             else {
                 gameObject.SetActive(false);
                 myScript.startItemPickup = true;
-                // Debug.Log(myScript.startItemPickup) = true;
-                //script = gameObject.GetComponent<ItemDropControllerScript>;
-                //ItemDropControllerScript.startItemPickup = true;
             }
         }
     }

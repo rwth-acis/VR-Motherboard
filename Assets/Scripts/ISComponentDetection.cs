@@ -24,7 +24,7 @@ public class ISComponentDetection : MonoBehaviour
     [SerializeField] private Transform cpuTutorial;
     [SerializeField] private Transform ramTutorial;
 
-    public void TPToComponentTutorial() {
+    public void TPToComponentTutorial() { // After selecting component click TPs player
         if (currentComponent == Component.GPU) {
             player.transform.position = gpuTutorial.position;
         }
@@ -39,7 +39,7 @@ public class ISComponentDetection : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) { // Detect component in beam
         bool hasKey = other.gameObject.GetComponent<Keychain>();
 
         if (!hasKey) {
@@ -48,12 +48,12 @@ public class ISComponentDetection : MonoBehaviour
         }
 
 
-        if (currentComponent != Component.NONE) // One Component is already displaying
+        if (currentComponent != Component.NONE) // One component is already displaying
             return;
 
         bool isKey(Key key) => other.gameObject.GetComponent<Keychain>().Contains(key);
 
-        if (isKey(cpuKey))
+        if (isKey(cpuKey)) 
             currentComponent = Component.CPU;
         else if (isKey(gpuKey))
             currentComponent = Component.GPU;

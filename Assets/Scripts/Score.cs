@@ -8,9 +8,6 @@ public class Score : MonoBehaviour
     public Color incorrectColor = Color.red;
     public Color pendingColor = Color.white;
 
-    private int score = 0;
-    private int maxScore = 100;
-
     private const float width = 180f;
     private const float height = 100f;
 
@@ -48,7 +45,7 @@ public class Score : MonoBehaviour
         }
     }
 
-    void CreateText(string text, float x, float y)
+    void CreateText(string text, float x, float y) // Quiz logic
     {
         GameObject textObject = new GameObject(text);
         TextMeshProUGUI textMeshPro = textObject.AddComponent<TextMeshProUGUI>();
@@ -65,12 +62,10 @@ public class Score : MonoBehaviour
     }
 
 
-    GameObject CreateCube(float x, float y, Color color)
+    GameObject CreateCube(float x, float y, Color color) // Scoreboard update
     {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
-        // Vector3 vec = transform.TransformPoint(Vec(x, y, 0f));
-        // cube.transform.SetParent(transform);
         cube.transform.SetParent(transform);
         cube.transform.position = transform.TransformPoint(Vec(x - 90f, 50f - y, 0f));
         cube.transform.localScale = new Vector3(7f, 7f, 7f);
@@ -82,7 +77,7 @@ public class Score : MonoBehaviour
         return cube;
     }
 
-    public void OnAnswer(Question question, bool correct)
+    public void OnAnswer(Question question, bool correct) // Update cube color
     {
         GameObject cube = questions[question];
         if (cube == null) return;

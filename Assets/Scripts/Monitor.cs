@@ -30,24 +30,6 @@ public class Monitor : MonoBehaviour
     {
         audio = GetComponent<AudioSource>();
 
-        void addListener(TextMeshProUGUI answer, int i)
-        {
-            // Add a new EventTrigger component if not already present
-            if (answer.GetComponent<EventTrigger>() == null)
-            {
-                answer.gameObject.AddComponent<EventTrigger>();
-            }
-
-            answer.GetComponent<EventTrigger>().triggers.Clear();
-
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerClick;
-            entry.callback.AddListener((eventData) => {
-                OnAnswerClick(i);
-            });
-            answer.GetComponent<EventTrigger>().triggers.Add(entry);
-        }
-
         button1.onClick.RemoveAllListeners();
         button2.onClick.RemoveAllListeners();
         button3.onClick.RemoveAllListeners();
@@ -55,19 +37,14 @@ public class Monitor : MonoBehaviour
         button1.onClick.AddListener(() => OnAnswerClick(1));
         button2.onClick.AddListener(() => OnAnswerClick(2));
         button3.onClick.AddListener(() => OnAnswerClick(3));
-
-        // addListener(answer3, 3);
     }
 
-    private void OnButtonClicked(SelectEnterEventArgs args)
-    {
-        Debug.Log(args.interactorObject.ToString());
-    }
 
     public void OnAnswerClick1() => OnAnswerClick(1);
 
     private void OnAnswerClick(int i)
     {
+        // Register click onto monitor and pass to scoreboard
         Question question = currentComponent.Quiz.Question;
         bool correct = question.CheckAnswer(i);
 
@@ -84,7 +61,7 @@ public class Monitor : MonoBehaviour
     }
 
 
-    public void OnChangeComponent(Component component)
+    public void OnChangeComponent(Component component) // new component in beam
     {
         Start();
         currentComponent = component;
